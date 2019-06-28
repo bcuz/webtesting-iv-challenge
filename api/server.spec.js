@@ -24,8 +24,8 @@ describe('server.js', () => {
     
     it('should return all users in db', async () => {
       const users = [
-        { id: 1, username: 'adam' },
-        { id: 2, username: 'sam' }
+        { id: 1, name: 'adam' },
+        { id: 2, name: 'sam' }
       ];
 
       await db('users').insert(users);
@@ -38,7 +38,7 @@ describe('server.js', () => {
 
   describe('delete /users/:id', () => {
     it('should show correct message when user is removed', async () => {
-      await Users.insert({ username: 'bob' });
+      await Users.insert({ name: 'bob' });
 
       let response = await request(server).del('/users/1');
 
