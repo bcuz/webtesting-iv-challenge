@@ -32,7 +32,6 @@ describe('users model', () => {
       await Users.remove(1);
       const users = await db('users');
 
-      // verify that there are now two records inserted
       expect(users).toHaveLength(0);
     });
   })

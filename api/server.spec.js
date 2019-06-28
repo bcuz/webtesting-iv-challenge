@@ -44,7 +44,13 @@ describe('server.js', () => {
 
       expect(response.status).toBe(200);
       expect(response.body).toEqual({ message: 'The user has been nuked' });
+    }); 
+    
+    it('should show correct message when user doesnt exist', async () => {
+      let response = await request(server).del('/users/3');
 
+      expect(response.status).toBe(404);
+      expect(response.body).toEqual({ message: 'The user could not be found' });
     }); 
 
   })
