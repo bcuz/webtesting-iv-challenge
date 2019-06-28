@@ -2,7 +2,6 @@ const db = require('../data/dbConfig.js');
 
 const Users = require('./usersModel.js');
 
-
 describe('users model', () => {
   afterEach(async () => {
     // this function executes and clears out the table before each test
@@ -11,7 +10,7 @@ describe('users model', () => {
 
   describe('insert()', () => {
 
-    it('should insert the provided hobbits into the db', async () => {
+    it('should insert the provided users into the db', async () => {
       // this code expects that the table is empty, we'll handle that below
       // add data to the test database using the data access file
       await Users.insert({ username: 'adam' });

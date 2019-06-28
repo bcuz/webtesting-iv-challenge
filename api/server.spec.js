@@ -36,4 +36,17 @@ describe('server.js', () => {
     }); 
   })
 
+  describe('delete /users/:id', () => {
+    it('should show correct message when user is removed', async () => {
+      await Users.insert({ username: 'bob' });
+
+      let response = await request(server).del('/users/1');
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual({ message: 'The user has been nuked' });
+
+    }); 
+
+  })
+
 })
