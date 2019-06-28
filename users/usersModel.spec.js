@@ -26,4 +26,16 @@ describe('users model', () => {
 
   })
 
+  describe('remove()', () => {
+
+    it('should remove specific user by id', async () => {
+      await Users.insert({ username: 'sam' });
+      await Users.remove(1);
+      const users = await db('users');
+
+      // verify that there are now two records inserted
+      expect(users).toHaveLength(0);
+    });
+  })
+
 })
