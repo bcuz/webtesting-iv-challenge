@@ -16,6 +16,25 @@ server.get('/users', (req, res) => {
     });
 });
 
+server.post('/users', async (req, res) => {
+  let user = req.body;
+
+  if (!user.name) {
+    return res.status(400).json({ message: 'Need a name' });
+  }
+
+  try {
+    const user = await Users.insert(req.body);
+    res.status(201).json(user);
+  } catch (error) {
+    // log error to server
+    console.log(error);
+    res.status(500).json({
+      message: 'Error adding the user',
+    });
+  }
+})
+
 server.delete('/users/:id', async (req, res) => {
   try {
     const count = await Users.remove(req.params.id);

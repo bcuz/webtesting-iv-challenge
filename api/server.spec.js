@@ -36,6 +36,37 @@ describe('server.js', () => {
     }); 
   })
 
+  describe('post /users', () => {
+    afterEach( async () => {
+      await db('users').truncate();
+    });
+
+    it('should return bad request status code for bad post to /users', async () => {
+      const expectedStatusCode = 400;
+      let body = {}
+
+      // do a get request to our api (server.js) and inspect the response
+      const response = await request(server).post('/users').send(body);
+
+      expect(response.status).toEqual(expectedStatusCode);
+
+    });
+    
+    it('should return a created status code for the /users route', async () => {
+      const expectedStatusCode = 201;
+      let body = { 
+        "name": "bob"
+      }
+
+      // do a get request to our api (server.js) and inspect the response
+      const response = await request(server).post('/users').send(body);
+
+      expect(response.status).toEqual(expectedStatusCode);
+
+    });
+
+  })
+
   describe('delete /users/:id', () => {
     it('should show correct message when user is removed', async () => {
       await Users.insert({ name: 'bob' });
